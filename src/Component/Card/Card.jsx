@@ -1,9 +1,9 @@
 
-const Card = ({ selectCourses, totalCredit, remaining, totalPrice }) => {
+const Card = ({ selectCourses, totalCredit, remainingCredit, totalPrice }) => {
   // console.log(selectCourses);
   return (
     <div className="space-y-5 bg-white rounded-xl p-4">
-      <h2 className="text-blue-500 font-bold ">Credit Hour Remaining {remaining} hr</h2>
+      <h2 className="text-blue-500 font-bold ">Credit Hour Remaining {remainingCredit} hr</h2>
       <hr></hr>
       <h2 className="font-bold">Course Name</h2>
 
@@ -14,7 +14,7 @@ const Card = ({ selectCourses, totalCredit, remaining, totalPrice }) => {
       ))}
 
       <hr></hr>
-      <p className="font-bold text-sm"> Total Credit Hour : {totalCredit}</p>
+      <p className="font-bold text-sm"> Total Credit Hour : {totalCredit} hr</p>
       <hr></hr>
       <p className="font-bold text-sm">Total Price : {totalPrice} USD</p>
     </div>
