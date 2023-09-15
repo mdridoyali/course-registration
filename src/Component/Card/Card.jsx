@@ -1,18 +1,22 @@
 
-
-const Card = () => {
+const Card = ({ selectCourses, totalCredit, remaining, totalPrice }) => {
+  // console.log(selectCourses);
   return (
     <div className="space-y-5 bg-white rounded-xl p-4">
-      <h2 className="text-blue-500 font-bold ">Credit Hour Remaining 7 hr</h2>
+      <h2 className="text-blue-500 font-bold ">Credit Hour Remaining {remaining} hr</h2>
       <hr></hr>
       <h2 className="font-bold">Course Name</h2>
-      <ol>
-        <li> Introduction to c programming</li>
-      </ol>
+
+      {selectCourses.map((name, index) => (
+        <ol key={index}>
+        <li>{index + 1} {name.course_name}</li>
+        </ol>
+      ))}
+
       <hr></hr>
-      <p className="font-bold text-sm"> Total Credit Hour : 13</p>
+      <p className="font-bold text-sm"> Total Credit Hour : {totalCredit}</p>
       <hr></hr>
-      <p className="font-bold text-sm" >Total Price : 48000 USD</p>
+      <p className="font-bold text-sm">Total Price : {totalPrice} USD</p>
     </div>
   );
 };
