@@ -1,5 +1,7 @@
-// import {BsBook} from "react"
-
+// import { BsBook } from "@react-icons/all-files/fa/FaBeer";
+import { FaBookOpen } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import Card from "../Card/Card";
@@ -23,7 +25,10 @@ const Home = () => {
       (item) => item.course_name === course.course_name
     );
     if (isExit) {
-      return alert("Already exit this item");
+      return toast("Already added this item", {
+        position: "top-center",
+        autoClose: 3000,
+      });
     }
     let credits = course.credit;
     credits = credits + totalCredit;
@@ -31,13 +36,15 @@ const Home = () => {
     let remain = 20 - credits;
 
     if (credits >= 20) {
-      return alert("Not Enough Money ");
+      return toast("Not Enough Money ", {
+         position: "top-center",
+        autoClose: 3000,
+      });
     }
     let price = course.price;
     price = price + totalPrice;
     setTotalPrice(price);
     setRemaining(remain);
-    console.log(totalCredit, remaining);
     setTotalCredit(credits);
     setSelectCourses([...selectCourses, course]);
   };
@@ -46,21 +53,27 @@ const Home = () => {
     <div className="grid grid-cols-12 gap-5 justify-between w-11/12 mb-5 mx-auto">
       <div className=" grid md:grid-cols-2 lg:grid-cols-3 gap-5 col-span-9">
         {allCourses.map((course) => (
-          <div key={course.id} className="bg-white rounded-xl p-4 space-y-3">
+          <div key={course.id} className="bg-white rounded-xl px-3 pt-3 pb-1 space-y-2">
             <img src={course.image} />
             <h2 className="font-bold">{course.course_name}</h2>
-            <p className="text-sm text-gray-500 lg:h-20">{course.course_desc}</p>
+            <p className="text-sm text-gray-500 lg:h-20">
+              {course.course_desc}
+            </p>
             <div className="flex justify-between">
               <p>$ Price: {course.price}</p>
-              <p> Credit: {course.credit}hr</p>
+              <div className="flex justify-center items-center gap-3">
+                <FaBookOpen></FaBookOpen>
+                <p> Credit: {course.credit}hr</p>
+              </div>
             </div>
 
             <button
               onClick={() => handleClickBtn(course)}
-              className="bg-blue-500 hover:bg-blue-700 py-1 text-white font-bold w-full rounded-lg"
+              className="bg-blue-500 hover:bg-blue-700 py-1 text-white font-bold w-full mb-0 rounded-lg"
             >
               Select
             </button>
+            <ToastContainer />
           </div>
         ))}
       </div>
