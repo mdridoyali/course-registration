@@ -1,5 +1,5 @@
 // import { BsBook } from "@react-icons/all-files/fa/FaBeer";
-import { FaBookOpen } from "react-icons/fa";
+import { FaBookOpen , FaDollarSign } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
@@ -60,7 +60,10 @@ const Home = () => {
               {course.course_desc}
             </p>
             <div className="flex justify-between">
-              <p>$ Price: {course.price}</p>
+            <div className="flex items-center gap-2">
+            <FaDollarSign></FaDollarSign>
+              <p>Price: {course.price}</p>
+            </div>
               <div className="flex justify-center items-center gap-3">
                 <FaBookOpen></FaBookOpen>
                 <p> Credit: {course.credit}hr</p>
