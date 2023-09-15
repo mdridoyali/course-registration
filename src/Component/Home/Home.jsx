@@ -19,37 +19,35 @@ const Home = () => {
   }, []);
 
   const handleClickBtn = (course) => {
-    if (remainingCredit == 0 && remainingCredit < course.credit) {
+    
+    if (remainingCredit < course.credit) {
       return toast("Not Enough Credit ", {
         position: "top-center",
         autoClose: 3000,
       });
     }
+  
     const isExit = selectCourses.find(
       (item) => item.course_name === course.course_name
     );
     if (isExit) {
-      toast("Already added this item", {
+      return toast("Already added this item", {
         position: "top-center",
         autoClose: 3000,
       });
-      return;
+      
     }
+   
+
     let credits = course.credit;
     credits = credits + totalCredit;
 
     let remain = 20 - credits;
 
-    if (remainingCredit == 0 && remainingCredit < course.credit) {
-      return toast("Not Enough Credit ", {
-        position: "top-center",
-        autoClose: 3000,
-      });
-    }
-
     let price = course.price;
     price = price + totalPrice;
 
+  
     setTotalCredit(credits);
     setRemainingCredit(remain);
     setTotalPrice(price);
@@ -64,7 +62,7 @@ const Home = () => {
             key={course.id}
             className="bg-white rounded-xl px-3 pt-3 pb-1 space-y-2"
           >
-            <img src={course.image} />
+            <img className="w-full" src={course.image} />
             <h2 className="font-bold">{course.course_name}</h2>
             <p className="text-sm text-gray-500 lg:h-20">
               {course.course_desc}
